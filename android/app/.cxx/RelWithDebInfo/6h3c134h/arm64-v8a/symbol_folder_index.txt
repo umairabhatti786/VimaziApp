@@ -1,0 +1,1 @@
+/Users/umairabbas/Documents/GitHub/Remitrax/android/app/build/intermediates/cxx/RelWithDebInfo/6h3c134h/obj/arm64-v8a
