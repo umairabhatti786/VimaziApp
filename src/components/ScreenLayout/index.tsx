@@ -1,45 +1,61 @@
 import React from "react";
 import {
-  ImageBackground,
   StyleSheet,
   ViewStyle,
-  ImageSourcePropType,
   View,
-  StatusBar
+  ImageBackground,
+  StatusBar,
+  StatusBarStyle,
+  Platform,
 } from "react-native";
 import { theme } from "../../utils/Themes";
+import { SafeAreaView } from "react-native-safe-area-context";
 import sizeHelper from "../../utils/Helpers";
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-interface BackgroundContainerProps {
-  children: React.ReactNode;
+interface ScreenLayoutProps {
+  children?: React.ReactNode;
   style?: ViewStyle;
-  backgroundColor?: any;
+  backgroundColor?: string;
+  barStyle?: StatusBarStyle; // "light-content" | "dark-content" | "default"
+  translucent?: boolean;
 }
 
-const ScreenLayout: React.FC<BackgroundContainerProps> = ({
+const ScreenLayout: React.FC<ScreenLayoutProps> = ({
   children,
   style,
-  backgroundColor,
+  backgroundColor = theme.colors.white,
 }) => {
+
+  const insets = useSafeAreaInsets();
+
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: backgroundColor || theme.colors.background,
-        paddingTop:sizeHelper.calHp(20)
-      }}
-    >
-         
-      <View style={[styles.container, style]}>{children}</View>
-    </SafeAreaView>
+    <>
+     
+      <View style={[styles.background, { backgroundColor,
+          paddingTop: sizeHelper.calHp(Platform.OS == "ios" ? 100 : sizeHelper.calHp(insets.top+30)),
+
+
+       }]}>
+        <View style={[styles.container, style]}>{children}</View>
+      </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
+background: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    
+  },
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
+    backgroundColor:theme.colors.white,
+    gap: sizeHelper.calHp(30),
+    paddingHorizontal: sizeHelper.calWp(30),
+
   },
 });
 

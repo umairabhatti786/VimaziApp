@@ -1,20 +1,23 @@
-import {Image, TouchableOpacity, View,TextInput} from 'react-native';
-import CustomText from '../Text';
-import {InputProps} from '../../utils/Types';
-import {theme} from '../../utils/Themes';
-import {fonts} from '../../utils/Themes/fonts';
-import sizeHelper from '../../utils/Helpers';
-import {useState} from 'react';
-import images from '../../utils/Constants/images';
+import {
+  View,
+  TextInput,
+  Platform,
+  TouchableOpacity,
+  Image,
+} from "react-native";
+import CustomText from "../Text";
+import { InputProps } from "../../utils/Types";
+import { fonts } from "../../utils/Themes/fonts";
+import sizeHelper from "../../utils/Helpers";
+import { useTheme } from "@react-navigation/native";
+import { theme } from "../../utils/Themes";
 
 const CustomInput = ({
   placeholder,
   keyboard,
   secureTextEntry,
-  props,
   fontWeight,
   multiline,
-  height,
   fontSize,
   value,
   onChangeText,
@@ -23,7 +26,6 @@ const CustomInput = ({
   editable,
   color,
   maxLength,
-  width,
   placeholderTextColor,
   borderRadius,
   backgroundColor,
@@ -32,90 +34,82 @@ const CustomInput = ({
   paddingTop,
   onSubmitEditing,
   label,
-  focusedInput,
-  inputKey,
-  leftSource,
-  rightSource,
-  onRightSource,
   borderColor,
   fontFamily,
-  
+  width,
+  rightSource,
+  height,
+  onRightSource,
+  leftSource,
+  rightSourceSize,
 }: InputProps) => {
-  const isFocused = focusedInput === inputKey;
-
   return (
     <View
       style={{
-        ...props,
-        width: width || '100%',
-      }}>
+        width: width || "100%",
+      }}
+    >
       {label && (
         <View
           style={{
-            marginBottom: sizeHelper.calHp(10),
-          }}>
+            marginBottom: sizeHelper.calHp(15),
+          }}
+        >
           <CustomText
             text={label}
-            fontWeight="700"
-            size={23}
-            fontFam={fonts.PlusJakartaSans_Bold}
+            fontWeight="600"
+            size={20}
+            fontFam={fonts.SF_Pro_Semibold}
           />
         </View>
       )}
-       <View
+      <View
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-
           paddingLeft: sizeHelper.calWp(20),
           paddingRight: sizeHelper.calWp(20),
-          height: sizeHelper.calHp(height || 80),
+          height: sizeHelper.calHp(height || 73),
           alignItems: "center",
-          borderColor: borderColor|| theme.colors.input_field_stroke,
-          gap:sizeHelper.calWp(10),
-          borderWidth: 1,
-          borderRadius: borderRadius || sizeHelper.calWp(15),
-          backgroundColor: backgroundColor || theme.colors.Input_field,
+          borderRadius: borderRadius || sizeHelper.calWp(25),
+          backgroundColor: backgroundColor || theme.colors.white,
         }}
       >
-        {
-          leftSource&&(
-            <Image
+        {leftSource && (
+          <Image
             source={leftSource}
             style={{
-              width: sizeHelper.calWp(40),
-              height: sizeHelper.calWp(40),
+              width: sizeHelper.calWp(30),
+              height: sizeHelper.calWp(30),
+              tintColor: theme.colors.text_gray,
             }}
             resizeMode={"contain"}
           />
+        )}
 
-          )
-        }
         <TextInput
           value={value}
           editable={editable}
           onSubmitEditing={onSubmitEditing}
           allowFontScaling={false} // Disable font scaling
           style={{
-            fontSize: sizeHelper.calHp(fontSize ||21),
-            width: rightSource ? "80%" : "98%",
+            fontSize: sizeHelper.calHp(fontSize || 22),
+            width: rightSource ? "85%" : "98%",
             alignItems: "center",
             height: "100%",
             justifyContent: "center",
-            textAlign:textAlign,
+            textAlign: textAlign,
             textAlignVertical: textAlignVertical,
             paddingTop: paddingTop || 0,
             paddingVertical: 0, // Adjust as needed for centering
-            fontFamily: fontFamily ||fonts.PlusJakartaSans_Regular,
+            fontFamily: fontFamily || fonts.SF_Pro_Regular,
             fontWeight: fontWeight || "500",
             color: color || theme.colors.black,
             paddingRight: sizeHelper.calWp(rightSource ? 10 : 0),
           }}
           placeholder={placeholder}
           multiline={multiline}
-          placeholderTextColor={
-            placeholderTextColor || theme.colors.gray
-          }
+          placeholderTextColor={placeholderTextColor || theme.colors.text_gray}
           keyboardType={keyboard}
           maxLength={maxLength}
           secureTextEntry={secureTextEntry || false}
@@ -124,7 +118,6 @@ const CustomInput = ({
           autoCapitalize="none"
         />
         {rightSource && (
-          
           <TouchableOpacity
             onPress={onRightSource}
             disabled={!onRightSource}
@@ -139,19 +132,17 @@ const CustomInput = ({
             <Image
               source={rightSource}
               style={{
-                width: sizeHelper.calWp(42),
-                height: sizeHelper.calWp(42),
-                tintColor:theme.colors.icon_gray
+                width: sizeHelper.calWp(rightSourceSize || 38),
+                height: sizeHelper.calWp(rightSourceSize || 38),
+                tintColor: theme.colors.text_gray,
               }}
               resizeMode={"contain"}
             />
           </TouchableOpacity>
         )}
-   
       </View>
-     
 
-      {error && (
+      {/* {error && (
         <View
           style={{
             marginTop: sizeHelper.calHp(10),
@@ -159,7 +150,7 @@ const CustomInput = ({
           }}>
           <CustomText size={20} text={error} color={theme.colors.red} />
         </View>
-      )}
+      )} */}
     </View>
   );
 };

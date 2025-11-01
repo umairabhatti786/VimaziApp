@@ -9,10 +9,10 @@ const RootNavigator = () => {
 
   return (
     <NavigationContainer>
-      <StatusBar backgroundColor={"#EFF4F8"} barStyle="dark-content" />
+      <StatusBar backgroundColor={"#ffffff"} barStyle="dark-content" />
+
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="AppStack" component={AppStack} />
-       
       </Stack.Navigator>
     </NavigationContainer>
   );

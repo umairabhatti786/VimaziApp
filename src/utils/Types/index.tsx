@@ -10,7 +10,7 @@ export type TextType = {
   size?: number;
   fontFam?: string;
   text?: any;
-  style?: StyleProp<TextStyle>; // Style for the screen container
+  style?: StyleProp<TextStyle>;
   lineHeight?: number;
   numberOfLines?: number;
   fontWeight?: string;
@@ -46,17 +46,13 @@ export type InputProps = {
   placeholder?: string;
   error?: string;
   secureTextEntry?: boolean;
-  rightSource?: any;
   keyboard?: any;
-  props?: any;
   value?: any;
   onChangeText?: any;
   onBlur?: any;
-  onShowPassword?: any;
   editable?: boolean;
   color?: string;
   maxLength?: number;
-  leftSource?: any;
   fontWeight?: any;
   multiline?: boolean;
   height?: any;
@@ -67,51 +63,32 @@ export type InputProps = {
   borderRadius?: any;
   backgroundColor?: any;
   borderColor?: any;
-  rightSourceSize?: any;
   textAlign?: any;
   textAlignVertical?: any;
   paddingTop?: any;
   onSubmitEditing?: () => void;
-  mandatory?: boolean;
   label?: string;
-  complusory?: boolean;
-  labelSize?: any;
   onFocus?: any;
-  focusedInput?: any;
-  setFocusedInput?: any;
-  inputKey?: string;
   disable?: boolean;
-  rightIconPress?: any;
-  defaultValue?: any;
-  selection?: any;
-  onSelectionChange?: any;
-  textColor?: any;
-  onRightSource?: any;
   fontFamily?: any;
+  rightSource?:any
+  onRightSource?:any
+  leftSource?:any
+  rightSourceSize?:any
 };
-//  Custom screen layout props
 
-export type AppStackParamList = {
-  GetStarted: undefined;
-  LoginScreen: undefined;
-  SignupScreen: undefined;
-  YourIdentity: undefined;
-  ProofOfResidency: undefined;
-  PassportPhotoInstruction: undefined;
-  BottomTab: undefined;
-  AddScreen: undefined;
-  ProfileScreen: undefined;
-  TransactionHistory: undefined;
-  SendMoneyScreen: undefined;
-  RecipientInformation: undefined;
-  DeliveryMethod: undefined;
-  EnterAmount: undefined;
-  ReviewPaymentDetails: undefined;
-  PaymentComplete: undefined;
-  YouVerified: undefined;
-  CapturedYourImage: undefined;
-  CapturedIDCard: undefined;
-  PhotoIDCard: undefined;
-  TakeSelfie: undefined;
-  Tabs:undefined
+
+export type DropDownProps = {
+  height?:any,
+  width?:any,
+  borderRadius?:any,
+  backgroundColor?:string,
+  onRightSource?:()=>void,
+  placeholder?:any,
+  value?:any,
+  data?:[],
+  top?:any,
+  onActions?:(item:any)=>void,
+  label?:any
 };
+

@@ -11,8 +11,6 @@ import Animated, {
   useAnimatedStyle,
 } from "react-native-reanimated";
 import { theme } from "../../utils/Themes";
-import sizeHelper from "../../utils/Helpers";
-import CustomButtom from "../Button";
 
 const CustomBottomSheet = (props: any) => {
   const {
@@ -24,7 +22,7 @@ const CustomBottomSheet = (props: any) => {
     handleSheetChanges,
   } = props;
 
-  const snapPoints = useMemo(() => ["55%", "80%"], []);
+  const snapPoints = useMemo(() => ["95%", "95%"], []);
 
   useFocusEffect(
     useCallback(() => {
@@ -37,37 +35,28 @@ const CustomBottomSheet = (props: any) => {
   return (
     <BottomSheetModal
       ref={bottomSheetModalRef}
+      // enableContentPanningGesture={false} // ✅ Required for FlatList to scroll
+      enableHandlePanningGesture={true} // ✅ Still allows dragging from handle
+      // enablePanDownToClose={false}
+
+      // enableHandlePanningGesture={false}
       backdropComponent={(props) => (
         <Backdrop {...props} bottomSheetModalRef={bottomSheetModalRef} />
       )}
       snapPoints={snapPoints}
       index={0}
-      backgroundStyle={{ backgroundColor: theme.colors.background }}
+      backgroundStyle={{ backgroundColor: theme.colors.white }}
       onDismiss={props?.onDismiss}
     >
-      <BottomSheetScrollView showsVerticalScrollIndicator={false}>
+      <BottomSheetScrollView
+        keyboardShouldPersistTaps="handled"
+        nestedScrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+      >
         <SafeAreaView>
           <View style={{ paddingBottom: 30 }}>{children}</View>
         </SafeAreaView>
       </BottomSheetScrollView>
-      <View
-        style={{
-          width: "100%",
-          padding: sizeHelper.calWp(40),
-          position: "absolute",
-          bottom: 0,
-          backgroundColor:theme.colors.white,
-          alignItems: "center",
-        }}
-      >
-        <CustomButtom
-
-          text="I Agree"
-          // style={{ marginTop: sizeHelper.calHp(20) }}
-          onPress={() => bottomSheetModalRef.current.dismiss()}
-          width={"100%"}
-        />
-      </View>
     </BottomSheetModal>
   );
 };

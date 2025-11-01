@@ -20,10 +20,10 @@ const CustomText = ({
 }: TextType) => {
   const memoizedStyle = useMemo(() => {
     const baseStyle = {
-      color: color || theme.colors.black,
+      color: color || theme.colors.primary,
       fontSize: sizeHelper.calHp(size || 20),
       fontWeight: fontWeight || "500",
-      fontFamily: fontFam || fonts.PlusJakartaSans_Regular,
+      fontFamily: fontFam || fonts.SF_Pro_Regular,
       textTransform,
       textDecorationLine,
       ...(lineHeight ? { lineHeight } : {}),
