@@ -24,6 +24,7 @@ import { appStyles } from "../../utils/GlobalStyles";
 import CustomInput from "../../components/Input";
 import FrontalPlaneJerkScreen from "../../screens/Main/FrontalPlaneJerk";
 import TreadmillRecordingScreen from "../../screens/Main/TreadmillRecording";
+import PoseDetectionScreen from "../../screens/Main/PoseDetectionScreen";
 
 const Stack = createNativeStackNavigator<any>();
 const AppStack = () => {
@@ -63,6 +64,11 @@ const AppStack = () => {
           name="TreadmillRecordingScreen"
           component={TreadmillRecordingScreen}
         />
+         <Stack.Screen
+          name="PoseDetectionScreen"
+          component={PoseDetectionScreen}
+        />
+        
       </Stack.Navigator>
     </>
   );
